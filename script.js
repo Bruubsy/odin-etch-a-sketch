@@ -16,8 +16,17 @@ function deleteGrid() {
     grid.remove();
 }
 
-function changeColor(gridElement, squareSize) {
-    gridElement.style.cssText = `display: flex;width: ${squareSize}px;height: ${squareSize}px;background-color: black;`;
+function changeColor(gridElement) {
+    let color = String(gridElement.style.backgroundColor);
+    if (color === ""){
+        gridElement.style.backgroundColor = "rgba(0,0,0,0.1)";
+    }
+    else if (color.match("rgba")){
+        let opacity = color.slice(13,-1);
+        let newOpacity = Number(opacity) + 0.1;
+        gridElement.style.backgroundColor = `rgba(0,0,0,${newOpacity})`;
+    }
+    
 }
 
 function setGridElement(row, squareSize) {
@@ -26,7 +35,7 @@ function setGridElement(row, squareSize) {
             gridElement.style.cssText = `display: flex;width: ${squareSize}px;height: ${squareSize}px;`;
             row.appendChild(gridElement);
             gridElement.addEventListener('mouseover', (event) => {
-                changeColor(gridElement, squareSize);
+                changeColor(gridElement);
             });
 }
 
