@@ -17,16 +17,7 @@ function deleteGrid() {
 }
 
 function changeColor(gridElement) {
-    let color = String(gridElement.style.backgroundColor);
-    if (color === ""){
-        gridElement.style.backgroundColor = "rgba(0,0,0,0.1)";
-    }
-    else if (color.match("rgba")){
-        let opacity = color.slice(13,-1);
-        let newOpacity = Number(opacity) + 0.1;
-        gridElement.style.backgroundColor = `rgba(0,0,0,${newOpacity})`;
-    }
-    
+    gridElement.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
 }
 
 function setGridElement(row, squareSize) {
